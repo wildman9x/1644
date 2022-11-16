@@ -18,20 +18,22 @@
       crossorigin="anonymous"
     ></script>
     <script>
-        //sayHi() function that greet the user with
-        //their name, country and gender
-        function sayHi() {
-            var name = document.getElementById("name").value;
-            var country = document.getElementById("country").value;
-            var gender = document.querySelector('input[name="gender"]:checked').value;
-            var message = "Hello " + name + " from " + country + " gender " + gender;
-            alert(message);
-        }
-
-
+      //sayHi() function that greet the user with
+      //their name, country and gender
+      function sayHi() {
+        var name = document.getElementById("name").value;
+        var country = document.getElementById("country").value;
+        var gender = document.querySelector(
+          'input[name="gender"]:checked'
+        ).value;
+        var message =
+          "Hello " + name + " from " + country + " gender " + gender;
+        alert(message);
+      }
     </script>
     <title>Document</title>
   </head>
+
   <body>
     <!--{# Create a form to enter basic information information include name,
     country, gender after submitting the form, say Hello + name + country +
@@ -79,16 +81,18 @@
                 id="female"
                 value="female"
               />
-                <label for="other" class="form-label">Other</label>
-                <input
-                    type="radio"
-                    class=""
-                    name="gender"
-                    id="other"
-                    value="other"
-                />
+              <label for="other" class="form-label">Other</label>
+              <input
+                type="radio"
+                class=""
+                name="gender"
+                id="other"
+                value="other"
+              />
             </div>
-            <button type="submit" class="btn btn-primary" onclick="sayHi()">Submit</button>
+            <button type="submit" class="btn btn-primary" onclick="sayHi()">
+              Submit
+            </button>
           </form>
         </div>
       </div>
