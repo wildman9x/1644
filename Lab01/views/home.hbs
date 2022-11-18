@@ -1,0 +1,26 @@
+{{!-- Greeting page --}}
+
+{{#if user}}
+    <h1>Welcome, {{user.name}}!</h1>
+    <p>Here are your recent posts:</p>
+    <ul>
+        {{#each posts}}
+            <li><a href="/posts/{{this.id}}">{{this.title}}</a></li>
+        {{/each}}
+    </ul>
+{{else}}
+    <h1>Welcome!</h1>
+    {{!-- about us link--}}
+    {{!-- <p>About us: </p> --}}
+    <ul>
+        <li><a href="/about">About us</a></li>
+    </ul>
+    {{!-- display current date --}}
+    <p>Today is {{now}}.</p>
+    {{!-- link the register --}}
+    <p>Register: </p>
+    <ul>
+        <li><a href="/register">Register</a></li>
+    </ul>
+    {{!-- display current time --}}
+{{/if}}
