@@ -34,7 +34,12 @@
             </thead>
             <tbody>
                 {{#each users}}
-                <tr>
+                <script>
+                    var bgColor = {{this.uuid}}.substring(9, 6);
+                    // add tr tag with background color
+                    document.write("<tr style='background-color: #" + bgColor + "'>");
+                </script>
+                <tr style="{{this.backgroundColor}}">
                     <td>{{this.name}}</td>
                     <td>{{this.country}}</td>
                     <td>{{this.gender}}</td>

@@ -61,11 +61,13 @@ app.get("/usersList", (req, res) => {
         "usersList",
         {
           users: users,
+          // backgroundColor: users.map((user) => user.uuid).substr(0, 6),
         },
         console.log(`Parsed ${rowCount} rows`),
         console.log(users),
         // console log only the name of the users
-        console.log(users.map((user) => user[0]))
+        console.log(users.map((user) => user.name)),
+        // console.log(backgroundColor),
       );
     });
 });
