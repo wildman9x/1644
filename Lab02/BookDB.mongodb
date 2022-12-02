@@ -1,0 +1,75 @@
+// MongoDB Playground
+// Use Ctrl+Space inside a snippet or a string literal to trigger completions.
+
+const database = 'BookDB';
+const collection = 'Books';
+const collection2 = 'Publishers';
+
+
+// Create a new database.
+use(database);
+
+// Create a new collection.
+db.createCollection(collection);
+db.createCollection(collection2);
+
+// The prototype form to create a collection:
+/* db.createCollection( <name>,
+  {
+    capped: <boolean>,
+    autoIndexId: <boolean>,
+    size: <number>,
+    max: <number>,
+    storageEngine: <document>,
+    validator: <document>,
+    validationLevel: <string>,
+    validationAction: <string>,
+    indexOptionDefaults: <document>,
+    viewOn: <string>,
+    pipeline: <pipeline>,
+    collation: <document>,
+    writeConcern: <document>,
+    timeseries: { // Added in MongoDB 5.0
+      timeField: <string>, // required for time series collections
+      metaField: <string>,
+      granularity: <string>
+    },
+    expireAfterSeconds: <number>,
+    clusteredIndex: <document>, // Added in MongoDB 5.3
+  }
+)*/
+
+// More information on the `createCollection` command can be found at:
+// https://www.mongodb.com/docs/manual/reference/method/db.createCollection/
+
+
+use("BookDB");
+// Insert 10 books information into the collection. The books information includes ID, title, author, and year.
+
+db.Books.insertMany([
+  { _id: 1, title: 'The Lord of the Rings', author: 'J.R.R. Tolkien', year: 1954 },
+  { _id: 2, title: 'Le Petit Prince (The Little Prince)', author: 'Antoine de Saint-Exupéry', year: 1943 },
+  { _id: 3, title: 'Harry Potter and the Philosopher\'s Stone', author: 'J.K. Rowling', year: 1997 },
+  { _id: 4, title: 'And Then There Were None', author: 'Agatha Christie', year: 1939 },
+  { _id: 5, title: 'Dream of the Red Chamber', author: 'Cao Xueqin', year: 1754 },
+  { _id: 6, title: 'The Hobbit', author: 'J.R.R. Tolkien', year: 1937 },
+  { _id: 7, title: 'She: A History of Adventure', author: 'H. Rider Haggard', year: 1887 },
+  { _id: 8, title: 'Bible', author: 'Various', year: -73 },
+  { _id: 9, title: 'The Adventures of Huckleberry Finn', author: 'Mark Twain', year: 1884 },
+  { _id: 10, title: 'The Catcher in the Rye', author: 'J.D. Salinger', year: 1951 }
+]);
+
+
+// Insert 5 publishers information into the collection. The publishers information includes ID, name, location and books.
+
+db.Publishers.insertMany([
+  { _id: 1, name: 'Tolkien', location: 'United Kingdom', books: [1, 6] },
+  { _id: 2, name: 'Le Livre de Poche', location: 'France', books: [2] },
+  { _id: 3, name: 'Bloomsbury', location: 'United Kingdom', books: [3] },
+  { _id: 4, name: 'HarperCollins', location: 'United States', books: [4, 10] },
+  { _id: 5, name: 'Penguin Books', location: 'United Kingdom', books: [5, 9] }
+]);
+
+use("BookDB");
+// display all the books published by Penguin Books
+db.Books.find({ _id: { $in: db.Publishers.findOne({ name: 'Penguin Books' }).books } });

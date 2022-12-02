@@ -1,0 +1,57 @@
+// Create a database name University
+// Insert 5 rows into the table Courses(courseName,credit,teacher,teachingHours)
+// find courses which teacher is 'tungdt'
+// sort Courses by column teacher('ascending')
+// find Courses having greatest teachingHour 
+// find Courses having teachingHour less than 10 or greater than 30
+// update Courses: change all credit from 3 to 4
+// Remove courses which teacher is tungdt
+// Search course where course name start with 'Learning'
+use('University');
+db.courses.drop();
+// Insert 5 rows into the table Courses(courseName,credit,teacher,teachingHours)
+db.courses.insertMany([
+    {courseName: 'Learning Java', credit: 3, teacher: 'tungdt', teachingHours: 20},
+    {courseName: 'Learning Python', credit: 3, teacher: 'thanhdt', teachingHours: 30},
+    {courseName: 'Learning C++', credit: 3, teacher: 'quandh', teachingHours: 40},
+    {courseName: 'Learning C#', credit: 3, teacher: 'tungdt', teachingHours: 50},
+    {courseName: 'learning Ruby', credit: 3, teacher: 'tungdt', teachingHours: 60}
+]);
+
+
+use('University');
+// find courses which teacher is 'tungdt'
+db.courses.find({teacher: 'tungdt'});
+use('University');
+// sort Courses by column teacher('ascending')
+db.courses.find().sort({teacher: 1});
+
+use('University');
+// find Courses having greatest teachingHour
+db.courses.find().sort({teachingHours: -1}).limit(1);
+
+use('University');
+// find Courses having teachingHour less than 10 or greater than 30
+db.courses.find({$or: [{teachingHours: {$lt: 10}}, {teachingHours: {$gt: 30}}]});
+
+use('University');
+// update Courses: change all credit from 3 to 4
+db.courses.updateMany({}, {$set: {credit: 4}});
+
+use('University');
+// Remove courses which teacher is tungdt
+db.courses.deleteMany({teacher: 'tungdt'});
+
+use('University');
+// Search course where course name start with 'Learning' not case sensitive
+db.courses.find({courseName: {$regex: /^Learning/i}});
+
+use('University');
+// Search course where course name start with 'Learning'
+// create index
+db.courses.createIndex({courseName: 1});
+// search using index
+
+
+
+
