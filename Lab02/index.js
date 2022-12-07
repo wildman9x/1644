@@ -2,8 +2,12 @@ const express = require("express");
 const app = express();
 // connect to mongodb
 const mongoose = require("mongoose");
+var dotenv = require("dotenv").config();
+
+console.log(process.env.MONGO_URI);
+
 mongoose.connect(
-  "mongodb+srv://anhtrinh3189:SJbQQmsSrNP3YyW@cluster0.tjprwlu.mongodb.net/StoreDB",
+  process.env.MONGO_URI,
   { useNewUrlParser: true, useUnifiedTopology: true }
 );
 const productModel = mongoose.model("Product", {
